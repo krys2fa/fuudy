@@ -6,6 +6,10 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class RegisterController extends Controller
 {
@@ -27,7 +31,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/profile';
 
     /**
      * Create a new controller instance.
@@ -68,4 +72,38 @@ class RegisterController extends Controller
             'password' => bcrypt($data['password']),
         ]);
     }
+
+    public function new()
+    {
+        return view('registration');
+    }
+
+
+    public function store()
+    {
+        $rules = array(
+        'email' => 'required|email|unique:users',
+        'password' => 'required|same:password_confirm',
+        'username' => 'required'
+        );
+
+        $validation = Validator::make(Input::all(), $rules);
+
+        if ($validation->fails()){
+            return Redirect::to('registration')->withErrors
+            ($validation)->withInput();
+        }
+
+        $user = new \App\User;
+        $user->email = Input::get('email');
+        $user->password = Hash::make(Input::get('password'));
+        $user->username = Input::get('username');
+        $user->admin = Input::get('admin') ? 1 : 0;
+
+        if ($user->save()){
+            Auth::loginUsingId($user->id);
+            return Redirect::to('profile');
+        }
+        return Redirect::to('registration')->withInput();
+        }
 }
