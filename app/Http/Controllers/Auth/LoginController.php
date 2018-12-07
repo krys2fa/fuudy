@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Auth;
+use Redirect;
 
 class LoginController extends Controller
 {
@@ -51,9 +52,9 @@ class LoginController extends Controller
     );
 
     if (Auth::attempt($user)){
-        return Redirect::to('profile');
+        return Redirect::to('dishes');
     }
         return Redirect::to('login')->with('login_error',
-        'Could not log in.');
+        'A problem occured logging in. Please try again....');
     }
 }
