@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 use Redirect;
 
 class LoginController extends Controller
@@ -47,14 +49,31 @@ class LoginController extends Controller
 
     public function store(){
         $user = array(
-        'email' => Input::get('email'),
-        'password' => Input::get('password')
-    );
+            'email' => Input::get('email'),
+            'password' => Input::get('password')
+        );
 
-    if (Auth::attempt($user)){
-        return Redirect::to('dishes');
-    }
+        if (Auth::attempt($user)){
+            $username = $user['username'];
+            $admin = $user['admin'];
+            $dish_count = DB::table('dishes')->count();
+            var_dump($dish_count);exit;
+
+            $restaurant_count = DB::table('restaurants')->count();
+
+            Session::put('username', $username);
+            Session::put('admin', $admin);
+            Session::put('dish_count', $dish_count);
+            Session::put('restaurant_count', $restaurant_count);
+
+            return Redirect::to('dishes');
+        }
         return Redirect::to('login')->with('login_error',
-        'A problem occured logging in. Please try again....');
+        'Ooops! A problem occured logging in. Please try again....');
+    }
+
+    public function destroy(){
+        Session::flush();
+        return Redirect::to('login');
     }
 }

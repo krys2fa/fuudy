@@ -12,7 +12,13 @@ class DishesController extends Controller
     public function dish_list()
     {
     	$dishes = DB::table('dishes')->get();
-		return view('dishes')->with('dishes', $dishes)
+		// return view('dishes')->with('dishes', $dishes)
+		// 					 ->nest('cart', 'cart', array('cart_dishes' =>
+		// 					   Session::get('cart')));
+
+		$breadcrumb = 'DISHES';
+
+		return view('dishes', compact('dishes', 'breadcrumb'))
 							 ->nest('cart', 'cart', array('cart_dishes' =>
 							   Session::get('cart')));
     }

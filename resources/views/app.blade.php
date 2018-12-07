@@ -41,7 +41,7 @@
             <div class="media userlogged">
                 <img alt="" src="{{ asset('images/photos/loggeduser.png') }}" class="media-object">
                 <div class="media-body">
-                    <h4>John Doe</h4>
+                    <h4><?if (isset(Session::get($username))) {Session::get($username)}?></h4>
                     <span>"Life is so..."</span>
                 </div>
             </div>
@@ -68,14 +68,14 @@
 
         <li>
           <a href="/restaurants">
-            <span class="pull-right badge badge-success">2</span>
+            <span class="pull-right badge badge-success"><?if (isset(Session::get($restaurant_count))) {Session::get($restaurant_count)}?></span>
             <i class="fa fa-home"></i> <span>Restaurants</span>
           </a>
         </li>
 
          <li>
           <a href="/dishes">
-            <span class="pull-right badge badge-success">2</span>
+            <span class="pull-right badge badge-success"><?if (isset(Session::get($dish_count))) {Session::get($dish_count)}?></span>
             <i class="fa fa-cutlery"></i> <span>Dishes</span>
           </a>
         </li>
@@ -272,7 +272,7 @@
             <div class="btn-group">
               <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                 <img src="images/photos/loggeduser.png" alt="" />
-                John Doe
+                <?if isset(Session::get($username)) {Session::get($username)}?>
                 <span class="caret"></span>
               </button>
               <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
@@ -314,7 +314,7 @@
             <div class="panel-body">
               <div class="row">
               
-                <div class="col-sm-4">
+                <div class="col-sm-4 col-md-12 col-lg-12">
 
                   @yield('content')
 

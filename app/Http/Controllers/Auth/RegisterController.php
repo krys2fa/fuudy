@@ -102,7 +102,7 @@ class RegisterController extends Controller
 
         if ($user->save()){
             Auth::loginUsingId($user->id);
-            return Redirect::to('profile');
+            return Redirect::to('dishes');
         }
         return Redirect::to('registration')->withInput();
         }

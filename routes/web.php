@@ -26,6 +26,7 @@ Route::get('secured', array('before' => 'auth', function(){
 // Login Routes
 Route::get('login', 'Auth\LoginController@create');
 Route::post('login', 'Auth\LoginController@store');
+Route::get('logout', 'Auth\LoginController@destroy');
 
 
 // Registration Routes
