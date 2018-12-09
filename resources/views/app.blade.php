@@ -7,7 +7,7 @@
   <meta name="author" content="">
   <link rel="shortcut icon" href="images/favicon.png" type="image/png">
 
-  <title>Foody</title>
+  <title>Fuudy</title>
 
   <link href="{{ asset('css/style.default.css') }}" rel="stylesheet">
   <link href="{{ asset('css/jquery.datatables.css') }}" rel="stylesheet">
@@ -300,7 +300,7 @@
       <div class="breadcrumb-wrapper">
         <span class="label">You are here:</span>
         <ol class="breadcrumb">
-          <li><a href="#">Foody</a></li>
+          <li><a href="#">Fuudy</a></li>
           <li class="active">Dashboard</li>
         </ol>
       </div>
