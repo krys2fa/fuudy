@@ -54,15 +54,11 @@ class LoginController extends Controller
         );
 
         if (Auth::attempt($user)){
-            $username = $user['username'];
-            $admin = $user['admin'];
+            
             $dish_count = DB::table('dishes')->count();
-            var_dump($dish_count);exit;
 
             $restaurant_count = DB::table('restaurants')->count();
 
-            Session::put('username', $username);
-            Session::put('admin', $admin);
             Session::put('dish_count', $dish_count);
             Session::put('restaurant_count', $restaurant_count);
 
@@ -73,7 +69,8 @@ class LoginController extends Controller
     }
 
     public function destroy(){
-        Session::flush();
+       // Session::flush();
+        Auth::logout();
         return Redirect::to('login');
     }
 }

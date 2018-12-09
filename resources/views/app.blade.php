@@ -41,7 +41,7 @@
             <div class="media userlogged">
                 <img alt="" src="{{ asset('images/photos/loggeduser.png') }}" class="media-object">
                 <div class="media-body">
-                    <h4><?if (isset(Session::get($username))) {Session::get($username)}?></h4>
+                    <h4> {{ Auth::user()['username'] }}  </h4>
                     <span>"Life is so..."</span>
                 </div>
             </div>
@@ -68,7 +68,9 @@
 
         <li>
           <a href="/restaurants">
-            <span class="pull-right badge badge-success"><?if (isset(Session::get($restaurant_count))) {Session::get($restaurant_count)}?></span>
+            <span class="pull-right badge badge-success">
+                <!-- {{ Session::get($restaurant_count)  }} -->
+            </span>
             <i class="fa fa-home"></i> <span>Restaurants</span>
           </a>
         </li>
@@ -272,7 +274,7 @@
             <div class="btn-group">
               <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                 <img src="images/photos/loggeduser.png" alt="" />
-                <?if isset(Session::get($username)) {Session::get($username)}?>
+                {{ Auth::user()['username'] }}
                 <span class="caret"></span>
               </button>
               <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
