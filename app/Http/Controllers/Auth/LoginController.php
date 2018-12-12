@@ -56,11 +56,13 @@ class LoginController extends Controller
         if (Auth::attempt($user)){
             
             $dish_count = DB::table('dishes')->count();
-
             $restaurant_count = DB::table('restaurants')->count();
+            $order_count = DB::table('orders')->count();
+            // var_dump($dish_count);exit;
 
             Session::put('dish_count', $dish_count);
             Session::put('restaurant_count', $restaurant_count);
+            Session::put('order', $order_count);
 
             return Redirect::to('dishes');
         }

@@ -31,7 +31,7 @@
   <div class="leftpanel">
     
     <div class="logopanel">
-        <h1><span>[</span> foody <span>]</span></h1>
+        <h1><span>[</span> fuudy <span>]</span></h1>
     </div><!-- logopanel -->
         
     <div class="leftpanelinner">    
@@ -69,7 +69,7 @@
         <li>
           <a href="/restaurants">
             <span class="pull-right badge badge-success">
-                <!-- {{ Session::get($restaurant_count)  }} -->
+                 {{ Session::get('restaurant_count')  }} 
             </span>
             <i class="fa fa-home"></i> <span>Restaurants</span>
           </a>
@@ -77,14 +77,18 @@
 
          <li>
           <a href="/dishes">
-            <span class="pull-right badge badge-success"><?if (isset(Session::get($dish_count))) {Session::get($dish_count)}?></span>
+            <span class="pull-right badge badge-success"> 
+                {{ Session::get('dish_count') }} 
+            </span>
             <i class="fa fa-cutlery"></i> <span>Dishes</span>
           </a>
         </li>
 
          <li>
           <a href="/orders">
-            <span class="pull-right badge badge-success">2</span>
+            <span class="pull-right badge badge-success">
+            {{ Session::get('order_count')  }} 
+            </span>
             <i class="fa fa-bars"></i> <span>Orders</span>
           </a>
         </li>
